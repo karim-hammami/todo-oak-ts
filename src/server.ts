@@ -1,4 +1,6 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
+import { green, yellow } from "https://deno.land/std@0.53.0/fmt/colors.ts";
+    
 
 const app = new Application();
 const port = 8080;
@@ -14,5 +16,5 @@ app.use(router.allowedMethods());
 
 
 // deno run --allow-net src/server.ts
-console.log('running on port ', port);
+console.log(`${yellow("Listening on:")} ${green(port.toString())}`);
 await app.listen({ port });
