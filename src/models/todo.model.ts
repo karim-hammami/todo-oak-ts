@@ -1,13 +1,16 @@
 import { DataTypes, Model } from "https://deno.land/x/denodb/mod.ts";
 import { db } from "../utils/db.ts";
 
-class Todo extends Model {
+export class Todo extends Model {
   static table = "todo";
 
   static timestamps = true;
 
   static fields = {
-    id: DataTypes.INTEGER,
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+    },
     title: DataTypes.STRING,
     desc: DataTypes.STRING,
     status: DataTypes.STRING,
@@ -19,3 +22,5 @@ class Todo extends Model {
 }
 
 db.link([Todo]);
+
+db.sync()
